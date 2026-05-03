@@ -1,0 +1,43 @@
+[package]
+name = "aeternum_engine"
+version = "0.1.0"
+edition = "2021"
+description = "A multi-scale emergent civilization simulation — simulated chaos, bound by rules"
+
+[dependencies]
+bevy = { version = "0.15", default-features = false, features = [
+    "bevy_asset",
+    "bevy_color",
+    "bevy_core_pipeline",
+    "bevy_render",
+    "bevy_sprite",
+    "bevy_text",
+    "bevy_ui",
+    "bevy_winit",
+    "bevy_state",
+    "multi_threaded",
+    "png",
+    "x11",
+] }
+bevy_egui = "0.33"
+noise = "0.9"
+rand = "0.8"
+rand_chacha = "0.3"
+smallvec = { version = "1.13", features = ["serde"] }
+serde = { version = "1.0", features = ["derive"] }
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+web-sys = { version = "0.3", features = ["Window"] }
+wasm-bindgen = "0.2"
+getrandom_02 = { package = "getrandom", version = "0.2", features = ["js"] }
+getrandom = { version = "0.3", features = ["wasm_js"] }
+
+[profile.dev]
+opt-level = 1
+
+[profile.dev.package."*"]
+opt-level = 3
+
+[profile.release]
+opt-level = "s"
+lto = "thin"
