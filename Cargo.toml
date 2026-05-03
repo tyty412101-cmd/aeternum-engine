@@ -1,0 +1,20 @@
+[package]
+name = "aeternum_engine"
+version = "0.1.0"
+edition = "2021"
+description = "A multi-scale emergent civilization simulation — simulated chaos, bound by rules"
+
+[dependencies]
+bevy = { version = "0.15", features = ["default"] }
+bevy_egui = "0.33"
+noise = "0.9"
+rand = "0.8"
+rand_chacha = "0.3"
+smallvec = { version = "1.13", features = ["serde"] }
+serde = { version = "1.0", features = ["derive"] }
+
+[profile.dev]
+opt-level = 1
+
+[profile.dev.package."*"]
+opt-level = 3
